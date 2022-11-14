@@ -3,17 +3,20 @@ const router = express.Router()
 const { getGoals, createGoal, updateGoal, deleteGoal
 } = require('../controllers/GoalsController')
 
+//Add route  protection
+const { protect } = require('../middleware/authMiddleware')
+
 //Get view Goals
-router.get('/', getGoals)
+router.get('/', protect, getGoals)
 
 //Create goal
-router.post('/', createGoal)
+router.post('/', protect, createGoal)
 
 //Update goal id is required
-router.put('/:id', updateGoal)
+router.put('/:id', protect, updateGoal)
 
 //Delete goal id is required
-router.delete('/:id', deleteGoal)
+router.delete('/:id', protect, deleteGoal)
 
 
 
