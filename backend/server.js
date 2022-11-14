@@ -1,12 +1,17 @@
 const express = require('express')
+//Colors is  used to add colors to terminal
+const colors = require('colors')
 const router = require('./routes/goalsRoutes')
-
 const dotenv = require('dotenv').config()
 
 //Bring in errorHandler
 const { errorHandler } = require('./middleware/errorMiddleware')
+//Connect to mongoDB
+const connectDB = require('./config/db')
 
 const port = process.env.PORT || 5000
+
+connectDB()
 
 const app = express()
 
